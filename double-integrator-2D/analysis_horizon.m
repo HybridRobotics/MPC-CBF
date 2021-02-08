@@ -59,12 +59,18 @@ controller_mpc_cbf_3.obs = obs;
 controller_mpc_cbf_3.sim(time_total);
 
 %% Simulate MPC-DC
+
+% The problem is infeasible at N=5
+% params.N = 5;
+% controller_mpc_dc_0 = MPC_DC(x0, system, params);
+% controller_mpc_dc_0.obs = obs;
+% controller_mpc_dc_0.sim(time_total);
+
 params.N = 7;
 controller_mpc_dc_1 = MPC_DC(x0, system, params);
 controller_mpc_dc_1.obs = obs;
 controller_mpc_dc_1.sim(time_total);
 
-%% Simulate MPC-DC with larger horizon
 params.N = 15;
 controller_mpc_dc_2 = MPC_DC(x0, system, params);
 controller_mpc_dc_2.obs = obs;
@@ -172,6 +178,14 @@ fprintf('Computational time for MPC-CBF1: mean %.3f, std %.3f, min %.3f, max %.3
     max(controller_mpc_cbf_1.solvertime),...
     controller_mpc_cbf_1.u_cost,...
     min(controller_mpc_cbf_1.distlog)]);
+
+% fprintf('Computational time for MPC-DC0: mean %.3f, std %.3f, min %.3f, max %.3f, input cost %.3f, min dist %f\n',...
+%     [mean(controller_mpc_dc_0.solvertime),...
+%     std(controller_mpc_dc_0.solvertime),...
+%     min(controller_mpc_dc_0.solvertime),...
+%     max(controller_mpc_dc_0.solvertime),...
+%     controller_mpc_dc_0.u_cost,...
+%     min(controller_mpc_dc_0.distlog)]);
 
 fprintf('Computational time for MPC-DC1: mean %.3f, std %.3f, min %.3f, max %.3f, input cost %.3f, min dist %f\n',...
     [mean(controller_mpc_dc_1.solvertime),...
