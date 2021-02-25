@@ -1,4 +1,4 @@
-classdef MPC_DC < handle
+classdef MPCDC < handle
     % MPC with distance constraints
     properties
         system
@@ -16,7 +16,7 @@ classdef MPC_DC < handle
         obs
     end
     methods
-        function self = MPC_DC(x0, system, params)
+        function self = MPCDC(x0, system, params)
             % Define MPC_DC controller
             self.x0 = x0;
             self.x_curr = x0;
@@ -29,7 +29,7 @@ classdef MPC_DC < handle
             xk = self.x_curr;
             while self.time_curr <= time
                 % Solve CFTOC
-                [~, uk] = self.solve_mpc_dc(self.x_curr);
+                [~, uk] = self.solveMPCDC(self.x_curr);
                 xk = self.system.A * xk + self.system.B * uk;
                 % update system
                 self.x_curr = xk;
@@ -40,7 +40,7 @@ classdef MPC_DC < handle
             end
         end
         
-        function [xopt, uopt] = solve_mpc_dc(self, xk)
+        function [xopt, uopt] = solveMPCDC(self, xk)
             % Solve MPC-DC
             [feas, x, u, J] = self.solve_cftoc(xk);
             if ~feas

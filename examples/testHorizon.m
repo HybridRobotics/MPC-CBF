@@ -9,10 +9,10 @@ P = 100*eye(4);
 Q = 10*eye(4);
 R = eye(2);
 N = 8;
-umin = [-1; -1];
-umax = [1; 1];
 xmin = [-5; -5; -5; -5];
 xmax = [5; 5; 5; 5];
+umin = [-1; -1];
+umax = [1; 1];
 
 %% Discrete-time double integrator 2D
 system.dt = dt;
@@ -43,13 +43,13 @@ obs.r = 1.5;
 %% Simulate MPC-CBF
 params.N = 5;
 params.gamma = 0.25;
-controller_mpc_cbf_1 = MPC_CBF(x0, system, params);
+controller_mpc_cbf_1 = MPCCBF(x0, system, params);
 controller_mpc_cbf_1.obs = obs;
 controller_mpc_cbf_1.sim(time_total);
 
 %% Simulate MPC-CBF with lower gamma
 params.gamma = 0.20;
-controller_mpc_cbf_2 = MPC_CBF(x0, system, params);
+controller_mpc_cbf_2 = MPCCBF(x0, system, params);
 controller_mpc_cbf_2.obs = obs;
 controller_mpc_cbf_2.sim(time_total);
 
@@ -62,23 +62,23 @@ controller_mpc_cbf_3.sim(time_total);
 
 % The problem is infeasible at N=5
 % params.N = 5;
-% controller_mpc_dc_0 = MPC_DC(x0, system, params);
+% controller_mpc_dc_0 = MPCDC(x0, system, params);
 % controller_mpc_dc_0.obs = obs;
 % controller_mpc_dc_0.sim(time_total);
 
 params.N = 7;
-controller_mpc_dc_1 = MPC_DC(x0, system, params);
+controller_mpc_dc_1 = MPCDC(x0, system, params);
 controller_mpc_dc_1.obs = obs;
 controller_mpc_dc_1.sim(time_total);
 
 params.N = 15;
-controller_mpc_dc_2 = MPC_DC(x0, system, params);
+controller_mpc_dc_2 = MPCDC(x0, system, params);
 controller_mpc_dc_2.obs = obs;
 controller_mpc_dc_2.sim(time_total);
 
 %%
 params.N = 30;
-controller_mpc_dc_3 = MPC_DC(x0, system, params);
+controller_mpc_dc_3 = MPCDC(x0, system, params);
 controller_mpc_dc_3.obs = obs;
 controller_mpc_dc_3.sim(time_total);
 

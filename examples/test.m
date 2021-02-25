@@ -19,10 +19,10 @@ P = 100*eye(4);
 Q = 10*eye(4);
 R = eye(2);
 N = 8;
-umin = [-1; -1];
-umax = [1; 1];
 xmin = [-5; -5; -5; -5];
 xmax = [5; 5; 5; 5];
+umin = [-1; -1];
+umax = [1; 1];
 
 %% Discrete-time double integrator 2D
 system.dt = dt;
@@ -67,7 +67,7 @@ obs.r = 1.5;
 %% Simulate DCLF-DCBF
 if run_dclf_dcbf
     fprintf('Run DCLF-DCBF\n');
-    controller_dclf_dcbf = DCLF_DCBF(x0, system, params_dclf_dcbf);
+    controller_dclf_dcbf = DCLFDCBF(x0, system, params_dclf_dcbf);
     controller_dclf_dcbf.obs = obs;
     controller_dclf_dcbf.sim(time_total);
 end
@@ -110,7 +110,7 @@ end
 params_mpc_cbf.N = 1;
 if run_mpc_cbf_one
     fprintf('Run MPC-CBF\n');
-    controller_mpc_cbf_one = MPC_CBF(x0, system, params_mpc_cbf);
+    controller_mpc_cbf_one = MPCCBF(x0, system, params_mpc_cbf);
     controller_mpc_cbf_one.obs = obs;
     controller_mpc_cbf_one.sim(time_total);
 end
@@ -153,7 +153,7 @@ end
 params_mpc_cbf.N = 8;
 if run_mpc_cbf_one
     fprintf('Run MPC-CBF\n');
-    controller_mpc_cbf_multiple = MPC_CBF(x0, system, params_mpc_cbf);
+    controller_mpc_cbf_multiple = MPCCBF(x0, system, params_mpc_cbf);
     controller_mpc_cbf_multiple.obs = obs;
     controller_mpc_cbf_multiple.sim(time_total);
 end
@@ -195,7 +195,7 @@ end
 %% Simulate MPC-DC
 if run_mpc_dc
     fprintf('Run MPC-DC\n');
-    controller_mpc_dc = MPC_DC(x0, system, params_mpc_dc);
+    controller_mpc_dc = MPCDC(x0, system, params_mpc_dc);
     controller_mpc_dc.obs = obs;
     controller_mpc_dc.sim(time_total);
 end

@@ -9,10 +9,10 @@ P = 100*eye(4);
 Q = 10*eye(4);
 R = eye(2);
 N = 8;
-umin = [-1; -1];
-umax = [1; 1];
 xmin = [-5; -5; -5; -5];
 xmax = [5; 5; 5; 5];
+umin = [-1; -1];
+umax = [1; 1];
 
 %% Discrete-time double integrator 2D
 system.dt = dt;
@@ -45,14 +45,14 @@ gamma_list = [0.1, 0.2, 0.3, 1.0];
 for ind = 1:size(gamma_list, 2)
     fprintf('Run MPC-CBF with gamma %f\n', gamma_list(ind));
     params_mpc_cbf.gamma = gamma_list(ind);
-    controller_mpc_cbf_list{ind} = MPC_CBF(x0, system, params_mpc_cbf);
+    controller_mpc_cbf_list{ind} = MPCCBF(x0, system, params_mpc_cbf);
     controller_mpc_cbf_list{ind}.obs = obs;
     controller_mpc_cbf_list{ind}.sim(time_total);
 end
 
 %% Simulate MPC-DC
 params_mpc_dc = params_mpc_cbf;
-controller_mpc_dc = MPC_DC(x0, system, params_mpc_cbf);
+controller_mpc_dc = MPCDC(x0, system, params_mpc_cbf);
 controller_mpc_dc.obs = obs;
 controller_mpc_dc.sim(time_total);
 

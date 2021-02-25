@@ -1,4 +1,4 @@
-classdef MPC_CBF < handle
+classdef MPCCBF < handle
     % MPC with distance constraints
     properties
         system
@@ -16,7 +16,7 @@ classdef MPC_CBF < handle
         obs
     end
     methods
-        function self = MPC_CBF(x0, system, params)
+        function self = MPCCBF(x0, system, params)
             % Define MPC_CBF controller
             self.x0 = x0;
             self.x_curr = x0;
@@ -29,7 +29,7 @@ classdef MPC_CBF < handle
             xk = self.x_curr;
             while self.time_curr <= time
                 % Solve CFTOC
-                [~, uk] = self.solve_mpc_dc(self.x_curr);
+                [~, uk] = self.solveMPCCBF(self.x_curr);
                 xk = self.system.A * xk + self.system.B * uk;
                 % update system
                 self.x_curr = xk;
@@ -40,7 +40,7 @@ classdef MPC_CBF < handle
             end
         end
         
-        function [xopt, uopt] = solve_mpc_dc(self, xk)
+        function [xopt, uopt] = solveMPCCBF(self, xk)
             % Solve MPC-CBF
             [feas, x, u, J] = self.solve_cftoc(xk);
             if ~feas

@@ -1,4 +1,4 @@
-classdef DCLF_DCBF < handle
+classdef DCLFDCBF < handle
     properties
         system
         params
@@ -12,7 +12,7 @@ classdef DCLF_DCBF < handle
     end
     
     methods
-        function self = DCLF_DCBF(x0, system, params)
+        function self = DCLFDCBF(x0, system, params)
             % Define DCLF-DCBF controller
             self.x0 = x0;
             self.x_curr = x0;
@@ -25,7 +25,7 @@ classdef DCLF_DCBF < handle
             xk = self.x_curr;
             while self.time_curr <= time
                 % Solve DCLF-DCBF
-                uk = self.solve_dclf_dcbf();
+                uk = self.solveDCLFDCBF();
                 xk = self.system.A * xk + self.system.B * uk;
                 % update system
                 self.x_curr = xk;
@@ -36,7 +36,7 @@ classdef DCLF_DCBF < handle
             end
         end
         
-        function uopt = solve_dclf_dcbf(self)
+        function uopt = solveDCLFDCBF(self)
             % Solve DCLF-DCBF
             x = self.x_curr;
             u = sdpvar(2,1);
