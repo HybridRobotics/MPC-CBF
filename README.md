@@ -6,9 +6,9 @@ We propose a control framework which unifies the model predictive control and co
 *Jun Zeng, Bike Zhang and Koushil Sreenath*
 
 #### Citing
-If you find this code useful in your work, please consider citing:
+If you find this project useful in your work, please consider citing following work:
 ```
-@article{zeng2021mpccbf,
+@inproceedings{zeng2021mpccbf,
   title={Safety-critical model predictive control with discrete-time control barrier function},
   author={Zeng, Jun and Zhang, Bike and Sreenath, Koushil},
   booktitle={2021 American Control Conference (ACC)},
