@@ -1,3 +1,5 @@
+**Status:** This repository is archived. For latest work about discrete-time CBF, please refer to the collection repository: [CLF-CBF-NMPC](https://github.com/HybridRobotics/CLF-CBF-NMPC).
+
 # MPC-CBF
 We propose a control framework which unifies the model predictive control and control barrier functions, where terminal cost function serves as control Lyapunov functions for stability. This is the reference implementation of our paper:
 ### Safety-Critical Model Predictive Control with Discrete-Time Control Barrier Function
