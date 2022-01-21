@@ -14,9 +14,25 @@ If you find this project useful in your work, please consider citing following w
   title={Safety-critical model predictive control with discrete-time control barrier function},
   author={Zeng, Jun and Zhang, Bike and Sreenath, Koushil},
   booktitle={2021 American Control Conference (ACC)},
-  year={2021}
+  year={2021},
+  volume={},
+  number={},
+  pages={3882-3889}
 }
 ```
+
+For analysis of feasibility, safety and computational complexity, please check out the following paper:
+```
+@inproceedings{zeng2021mpccbf-feasibility,
+  title={Enhancing feasibility and safety of nonlinear model predictive control with discrete-time control barrier functions},
+  author={Zeng, Jun and Li, Zhongyu and Sreenath, Koushil},
+  booktitle={2021 Conference on Decision and Control (CDC)},
+  year={2021},
+  volume={},
+  number={},
+  pages={6137-6144}
+}
+``` 
 
 #### Instructions
 The 2D double integrator is assigned to reach the target position at origin while avoiding obstacles. We have three classes for different controllers: `DCLFDCBF.m` (DCLF-DCBF), `MPCCBF.m` (MPC-CBF) and `MPCDC` (MPC-DC), respectively.
